@@ -19,7 +19,6 @@ lib/state.json
 result
 *_junit.xml
 
-./Vagrantfile
 .vagrant/
 
 .vscode/
