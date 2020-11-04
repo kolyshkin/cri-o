@@ -22,7 +22,7 @@ func makeOCIConfigurationRootless(g *generate.Generator) {
 	g.Config.Process.ApparmorProfile = ""
 
 	for i := range g.Config.Mounts {
-		var newOptions []string
+		newOptions := g.Config.Mounts[i].Options[:0]
 		for _, o := range g.Config.Mounts[i].Options {
 			if strings.HasPrefix(o, "gid=") {
 				continue
