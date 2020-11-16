@@ -363,21 +363,6 @@ jobs:
           paths:
             - *gocache
 
-  lint:
-    executor: container
-    steps:
-      - checkout
-      - restore_cache:
-          keys:
-            - v4-lint-{{ checksum "go.sum" }}
-      - run:
-          name: lint
-          command: make lint
-      - save_cache:
-          key: v4-lint-{{ checksum "go.sum" }}
-          paths:
-            - *gocache
-
   release-branch-forward:
     executor: container
     steps:
