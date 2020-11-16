@@ -290,7 +290,7 @@ function check_images() {
 
     # check that images are there
     json=$(crictl images -o json)
-    [ -n "$json" ]
+    [ -n $json ]
     list=$(jq -r '.images[] | .repoTags[]' <<<"$json")
     for img in "${IMAGES[@]}"; do
         if [[ "$list" != *"$img"* ]]; then
@@ -318,7 +318,6 @@ function start_crio_no_setup() {
 }
 
 # Start crio.
-# shellcheck disable=SC2120
 function start_crio() {
     setup_crio "$@"
     start_crio_no_setup
