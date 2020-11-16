@@ -235,7 +235,7 @@ func (c *container) SetConfig(config *pb.ContainerConfig, sboxConfig *pb.PodSand
 	}
 
 	if c.sboxConfig != nil {
-		return errors.New("sandbox config is already set")
+		return errors.New("sandbox config is already set: %v", c.sboxConfig)
 	}
 
 	c.config = config
