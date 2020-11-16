@@ -19,7 +19,7 @@ load helpers
 
 	[[ "$output" == *"GoVersion:"* ]]
 	[[ "$output" == *"Compiler:"* ]]
-	[[ "$output" == *"Platform:"* ]]
+        [[ "$output" == *"Platform:"* ]]
 	[[ "$output" == *"Linkmode:"* ]]
 }
 
