@@ -44,8 +44,8 @@ the default pod test template runs without host networking:
 $ cd "$GOPATH/src/github.com/containernetworking"
 $ git clone https://github.com/containernetworking/plugins.git
 $ cd plugins
-$ git checkout -q dcf7368eeab15e2affc6256f0bb1e84dd46a34de
-$ ./build.sh
+$ git checkout -q v1.1.1
+$ ./build_linux.sh
 $ mkdir -p /opt/cni/bin
 $ cp bin/* /opt/cni/bin/
 ```
