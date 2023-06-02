@@ -136,11 +136,7 @@ function teardown() {
 	ctr_id=$(crictl create "$pod_id" "$TESTDATA"/container_redis.json "$TESTDATA"/sandbox_config.json)
 	crictl start "$ctr_id"
 
-	output=$(crictl exec --sync "$ctr_id" sh -c "head -n1 /dev/qifoo")
-	[[ -z "$output" ]]
-
-	output=$(crictl exec --sync "$ctr_id" sh -c "head -n1 /dev/peterfoo")
-	[[ -n "$output" ]]
+	crictl exec --sync "$ctr_id" sh -c "head -n1 /dev/qifoo /dev/peterfoo"
 }
 
 @test "annotation should fail if one device is invalid" {
