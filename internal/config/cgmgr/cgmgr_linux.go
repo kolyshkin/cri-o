@@ -10,9 +10,8 @@ import (
 	"strconv"
 	"strings"
 
-	libctr "github.com/opencontainers/runc/libcontainer/cgroups"
-	libctrCgMgr "github.com/opencontainers/runc/libcontainer/cgroups/manager"
-	cgcfgs "github.com/opencontainers/runc/libcontainer/configs"
+	libctr "github.com/opencontainers/cgroups"
+	libctrCgMgr "github.com/opencontainers/cgroups/manager"
 	rspec "github.com/opencontainers/runtime-spec/specs-go"
 	"github.com/sirupsen/logrus"
 
@@ -187,10 +186,10 @@ func MoveProcessToContainerCgroup(containerPid, commandPid int) error {
 // createSandboxCgroup takes the path of the sandbox parent and the desired containerCgroup
 // It creates a cgroup through cgroupfs (as opposed to systemd) at the location cgroupRoot/sbParent/containerCgroup.
 func createSandboxCgroup(sbParent, containerCgroup string) error {
-	cg := &cgcfgs.Cgroup{
+	cg := &libctr.Cgroup{
 		Name:   containerCgroup,
 		Parent: sbParent,
-		Resources: &cgcfgs.Resources{
+		Resources: &libctr.Resources{
 			SkipDevices: true,
 		},
 	}
@@ -227,10 +226,10 @@ func createSandboxCgroup(sbParent, containerCgroup string) error {
 }
 
 func removeSandboxCgroup(sbParent, containerCgroup string) error {
-	cg := &cgcfgs.Cgroup{
+	cg := &libctr.Cgroup{
 		Name:   containerCgroup,
 		Parent: sbParent,
-		Resources: &cgcfgs.Resources{
+		Resources: &libctr.Resources{
 			SkipDevices: true,
 		},
 	}
